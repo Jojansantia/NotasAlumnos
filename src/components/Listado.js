@@ -1,6 +1,9 @@
 import React from 'react';
+import Alumno from './Alumno';
 
-const Listado = () => {
+const Listado = ({alumnos, alumnosFiltro}) => {
+    console.log(alumnosFiltro);
+    
     return ( 
         <>
             <div className="container  border row-span-2 col-span-2 mb-10 ">
@@ -17,11 +20,26 @@ const Listado = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td className="border px-4 py-2">Intro to CSS</td>
-                            <td className="border px-4 py-2">Adam</td>
-                            <td className="border px-4 py-2">858</td>
-                        </tr>
+                    {alumnosFiltro.length !== 0
+                        ?
+                            (
+                                alumnosFiltro.map(alumno => (
+                                    <Alumno
+                                        key={alumno.codigo}
+                                        alumno={alumno}
+                                    /> 
+                                ))
+                            )
+                        :
+                            (
+                                alumnos.map(alumno => (
+                                    <Alumno
+                                        key={alumno.codigo}
+                                        alumno={alumno}
+                                    /> 
+                                ))
+                            )
+                    }
                     </tbody>
                 </table>
             </div>

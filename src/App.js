@@ -7,9 +7,11 @@ import Buscar from './components/Buscar';
 function App() {
 
   const [ alumnos, guardarAlumnos] = useState([]);
+  const [ alumnosFiltro, guardarAlumnosFiltro] = useState([]);
   const [ informacion, guardarInformacion ] = useState({});
   const [ creardatos, guardarCrearDatos ] = useState(false);
-  console.log(informacion);
+
+  
 
   useEffect(() => {
     if(creardatos) {
@@ -37,8 +39,14 @@ function App() {
             guardarCrearDatos={guardarCrearDatos}
           />
           
-          <Buscar/>
-          <Listado/>
+          <Buscar
+            guardarAlumnosFiltro={guardarAlumnosFiltro}
+            alumnos={alumnos}
+          />
+          <Listado
+            alumnos={alumnos}
+            alumnosFiltro={alumnosFiltro}
+          />
           
         </div>
       </div>
