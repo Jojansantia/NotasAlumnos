@@ -1,25 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import Header from './components/Header';
+import Datos from './components/Datos';
+import Listado from './components/Listado';
+import Buscar from './components/Buscar';
 
 function App() {
+
+  const [ alumnos, guardarAlumnos] = useState([]);
+  const [ informacion, guardarInformacion ] = useState({});
+  const [ creardatos, guardarCrearDatos ] = useState(false);
+  console.log(informacion);
+
+  useEffect(() => {
+    if(creardatos) {
+
+        // agrega el nuevo saldo
+        guardarAlumnos([
+          ...alumnos,
+          informacion
+        ]);
+        // Resetear a false
+        guardarCrearDatos(false);
+    }
+  }, [informacion, creardatos, alumnos]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="mb-5 mx-5 md:m-auto md:w-4/5">
+        <div className=" container-fluid  m-auto">
+          <Header/>  
+        </div>
+        <div className=" grid grid-rows-3 grid-flow-col gap-2  m-auto">
+          
+          <Datos
+            guardarInformacion={guardarInformacion}
+            guardarCrearDatos={guardarCrearDatos}
+          />
+          
+          <Buscar/>
+          <Listado/>
+          
+        </div>
+      </div>
+    </>
   );
 }
 
