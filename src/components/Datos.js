@@ -1,6 +1,6 @@
 import React, { useState, useEffect  } from 'react';
 import Swal from 'sweetalert2';
-const Datos = ({guardarInformacion, guardarCrearDatos}) => {
+const Datos = ({alumnos, filtro, alumnosFiltro, guardarAlumnosFiltro, guardarInformacion, guardarCrearDatos}) => {
 
     const [codigo, guardarCodigo] = useState('');
     const [alumno, guardarAlumno] = useState('');
@@ -8,13 +8,13 @@ const Datos = ({guardarInformacion, guardarCrearDatos}) => {
     const [final, guardarFinal] = useState('');
     const [seguimiento, guardarSeguimiento] = useState('');
     let [definitiva, guardarDefinitiva] = useState('');
+    
     let estado = '';
-
     definitiva = ((parcial*0.25) + (final*0.25) + (seguimiento*0.5))
     if(definitiva < 3){
-        estado = 'perdio'
+        estado = "Perdio"
     }else if(definitiva >= 3 && definitiva <= 5){
-        estado = 'gano'
+        estado = "Gano"
     }
 
     useEffect(() => {
@@ -25,11 +25,22 @@ const Datos = ({guardarInformacion, guardarCrearDatos}) => {
 
     const HandleSubmit = e => {
         e.preventDefault();
+        
+        let alumnoExiste = alumnos.find(alumno => alumno.codigo === codigo);
+        if(alumnoExiste){
+            Swal.fire(
+                'Error',
+                'Ya existe un alumno con este documento.',
+                'error'
+            );
+            limpiar()
+            return;
+        }
 
         if((parcial < 0 || parcial > 5) || (final < 0 || final > 5) || (seguimiento < 0 || seguimiento > 5)){
             Swal.fire(
                 'Error',
-                'Las notas deben ser entre 0 y 5',
+                'Las notas deben ser entre 0 y 5.',
                 'error'
             );
             limpiar()
@@ -39,7 +50,7 @@ const Datos = ({guardarInformacion, guardarCrearDatos}) => {
         if(codigo.trim()=== "" || alumno.trim()=== "" || parcial.trim()=== "" || final.trim()=== "" || seguimiento.trim()=== "" ){
             Swal.fire(
                 'Error',
-                'Todos los campos son obligatorios',
+                'Todos los campos son obligatorios.',
                 'error'
             );
             limpiar()
@@ -57,6 +68,21 @@ const Datos = ({guardarInformacion, guardarCrearDatos}) => {
             estado
         }
     
+
+        if(filtro.radio === "Perdio" && estado === "Perdio"){
+            guardarAlumnosFiltro([
+                ...alumnosFiltro,
+                informacion
+              ]);
+        }
+
+        if(filtro.radio === "Gano" && estado === "Gano"){
+            guardarAlumnosFiltro([
+                ...alumnosFiltro,
+                informacion
+              ]);
+        }
+
         // pasar el gasto al componente principal
         guardarInformacion(informacion);
         guardarCrearDatos(true);
@@ -77,7 +103,7 @@ const Datos = ({guardarInformacion, guardarCrearDatos}) => {
                 <h1 className="text-center text-gray-700 text-2xl font-bold text-black ">
                     Datos
                 </h1>
-                <div className=" ">
+                <div className="mt-3 ">
                         <form onSubmit={HandleSubmit} >
                             <div className="mb-4 flex ">
                                 <label className="w-1/3 text-center mr-2 text-gray-700 text-sm font-bold my-auto" htmlFor="codigo">

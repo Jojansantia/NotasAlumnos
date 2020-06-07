@@ -10,8 +10,12 @@ function App() {
   const [ alumnosFiltro, guardarAlumnosFiltro] = useState([]);
   const [ informacion, guardarInformacion ] = useState({});
   const [ creardatos, guardarCrearDatos ] = useState(false);
+  const [ filtrar, guardarFiltrar ] = useState(false);
 
-  
+  const [filtro, guardarFiltro] = useState({
+    documento:'',
+    radio:'todos'
+  });
 
   useEffect(() => {
     if(creardatos) {
@@ -25,7 +29,7 @@ function App() {
         guardarCrearDatos(false);
     }
   }, [informacion, creardatos, alumnos]);
-
+  
   return (
     <>
       <div className="mb-5 mx-5 md:m-auto md:w-4/5">
@@ -33,21 +37,26 @@ function App() {
           <Header/>  
         </div>
         <div className=" grid grid-rows-3 grid-flow-col gap-2  m-auto">
-          
           <Datos
+            alumnos={alumnos}
+            filtro={filtro}
             guardarInformacion={guardarInformacion}
             guardarCrearDatos={guardarCrearDatos}
-          />
-          
-          <Buscar
             guardarAlumnosFiltro={guardarAlumnosFiltro}
+            alumnosFiltro={alumnosFiltro}
+          />
+          <Buscar
             alumnos={alumnos}
+            filtro={filtro}
+            guardarAlumnosFiltro={guardarAlumnosFiltro}
+            guardarFiltrar={guardarFiltrar}
+            guardarFiltro={guardarFiltro}
           />
           <Listado
             alumnos={alumnos}
+            filtrar={filtrar}
             alumnosFiltro={alumnosFiltro}
           />
-          
         </div>
       </div>
     </>
