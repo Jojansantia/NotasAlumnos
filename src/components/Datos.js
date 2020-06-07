@@ -182,18 +182,18 @@ const Datos = ({alumnos, filtro, alumnosFiltro, guardarAlumnosFiltro, guardarInf
                                 />
                             </div> 
                             <div className="mt-4 flex justify-center">
-                                <label className="w-1/3 text-center  mr-10 text-gray-700 text-sm font-bold my-auto" htmlFor="definitiva">
+                                <label className="w-1/3 text-center text-2xl  mr-10 text-gray-700 text-sm font-bold my-auto" htmlFor="definitiva">
                                     DEFINITIVA:
                                 </label>
                                 
                                 <h2
-                                    className=" text-gray-700 text-center"
+                                    className=" text-gray-700 text-2xl text-center"
                                 >{definitiva}</h2>
                             </div>
                             <div className="flex justify-center">
                                 <button
                                     type="submit"
-                                    className="my-5 bg-gray-800 w-1/3 rounded-md p-2 text-white uppercase hover:bg-gray-900"
+                                    className="my-5 bg-gray-800 px-10 rounded-md p-2 text-white uppercase hover:bg-gray-900"
                                 >
                                     Guardar
                                 </button>

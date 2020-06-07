@@ -46,9 +46,9 @@ const Buscar = ({alumnos, filtro, guardarFiltro, guardarAlumnosFiltro, guardarFi
         <>
             <div className="container  border row-span-1 col-span-2   ">
                 <form onSubmit={HandleSubmit} >
-                    <div className="flex justify-center my-3">
+                    <div className="flex justify-around my-3">
                         <div className="flex">
-                            <svg className="ml-1 w-10 px-2 rounded-l bg-gray-700 text-white" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path></svg>
+                            <svg className="ml-1 w-12 px-3 rounded-l bg-gray-700 text-white" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path></svg>
                             <input
                                 className="mr-1 appearance-none rounded-r border-2 border-l-0 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-lg "
                                 id="documento"
@@ -62,7 +62,7 @@ const Buscar = ({alumnos, filtro, guardarFiltro, guardarAlumnosFiltro, guardarFi
                         <div className="flex ">
                             <button
                                 type="submit"
-                                className="mx-1 bg-gray-800 rounded-md p-2 text-white uppercase hover:bg-gray-900"
+                                className="mx-1 bg-gray-800 rounded-md px-10 py-2 text-white uppercase hover:bg-gray-900"
                             >
                                 Buscar
                             </button>
@@ -70,7 +70,7 @@ const Buscar = ({alumnos, filtro, guardarFiltro, guardarAlumnosFiltro, guardarFi
                     </div>
                     </form>
                     <form onSubmit={HandleSubmitFiltro} >
-                    <div className="flex justify-around">
+                    <div className="flex justify-around mt-1">
                         <div>
                             <input 
                                 className="mr-2 " type="radio" name="radio" id="radio1" value="Perdio"
@@ -104,7 +104,7 @@ const Buscar = ({alumnos, filtro, guardarFiltro, guardarAlumnosFiltro, guardarFi
                     <div className="flex justify-center">
                         <button
                             type="submit"
-                            className="my-3 bg-gray-800 w-1/3 rounded-md p-2 text-white uppercase hover:bg-gray-900"
+                            className="my-3 bg-gray-800 px-10 rounded-md p-2 text-white uppercase hover:bg-gray-900"
                             >
                             Filtrar
                         </button>
