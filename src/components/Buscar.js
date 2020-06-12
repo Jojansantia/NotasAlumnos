@@ -2,16 +2,15 @@ import React from 'react';
 
 const Buscar = ({alumnos, filtro, guardarFiltro, guardarAlumnosFiltro, guardarFiltrar}) => {
 
-    const HandleChange = e =>{
+    const handleChange = e =>{
         guardarFiltro({
             ...filtro,
             [e.target.name]: e.target.value
         })
     }
 
-    const HandleSubmit = e =>{
+    const handleSubmit = e =>{
         e.preventDefault();
-
         let alumnosFiltrados;
         if(filtro.documento.trim() === '' ){
             alumnosFiltrados = [];
@@ -20,32 +19,28 @@ const Buscar = ({alumnos, filtro, guardarFiltro, guardarAlumnosFiltro, guardarFi
         }
         guardarAlumnosFiltro(alumnosFiltrados)
         guardarFiltrar(true)
-        
-        setTimeout(() => {
-            guardarFiltro({
-                documento:''
-            })
-        }, 3000);
     }
     
-    const HandleSubmitFiltro = e =>{
+    const handleSubmitFiltro = e =>{
         e.preventDefault();
-
         let alumnosFiltrados;
-        if( filtro.radio === "Perdio" || filtro.radio === "Gano"){
-            alumnosFiltrados = alumnos.filter(alumno => alumno.estado === filtro.radio);
+        if( filtro.estadoAlumno === "Perdio" || filtro.estadoAlumno === "Gano"){
+            alumnosFiltrados = alumnos.filter(alumno => alumno.estado === filtro.estadoAlumno);
             guardarFiltrar(true)
         }else{
             alumnosFiltrados = []
             guardarFiltrar(false)
         }
         guardarAlumnosFiltro(alumnosFiltrados)
+        guardarFiltro({
+            documento:''
+        })
     }
 
     return ( 
         <>
             <div className="container  border row-span-1 col-span-2   ">
-                <form onSubmit={HandleSubmit} >
+                <form onSubmit={handleSubmit} >
                     <div className="flex justify-around my-3">
                         <div className="flex">
                             <svg className="ml-1 w-12 px-3 rounded-l bg-gray-700 text-white" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path></svg>
@@ -55,7 +50,7 @@ const Buscar = ({alumnos, filtro, guardarFiltro, guardarAlumnosFiltro, guardarFi
                                 name="documento"
                                 type="number"
                                 placeholder="Documento"
-                                onChange={HandleChange}
+                                onChange={handleChange}
                                 value={filtro.documento}
                             />
                         </div>
@@ -69,12 +64,12 @@ const Buscar = ({alumnos, filtro, guardarFiltro, guardarAlumnosFiltro, guardarFi
                         </div>
                     </div>
                     </form>
-                    <form onSubmit={HandleSubmitFiltro} >
+                    <form onSubmit={handleSubmitFiltro} >
                     <div className="flex justify-around mt-1">
                         <div>
                             <input 
-                                className="mr-2 " type="radio" name="radio" id="radio1" value="Perdio"
-                                onChange={HandleChange}
+                                className="mr-2 " type="radio" name="estadoAlumno" id="radio1" value="Perdio"
+                                onChange={handleChange}
                             />
                             <label className="form-check-label " htmlFor="perdieron">
                                 Perdieron
@@ -82,8 +77,8 @@ const Buscar = ({alumnos, filtro, guardarFiltro, guardarAlumnosFiltro, guardarFi
                         </div>
                         <div>
                             <input 
-                                className="mr-2" type="radio" name="radio" id="radio2" value="Gano" 
-                                onChange={HandleChange}
+                                className="mr-2" type="radio" name="estadoAlumno" id="radio2" value="Gano" 
+                                onChange={handleChange}
                             />
                             <label className="form-check-label " htmlFor="perdieron">
                                 Ganaron
@@ -91,16 +86,15 @@ const Buscar = ({alumnos, filtro, guardarFiltro, guardarAlumnosFiltro, guardarFi
                         </div>
                         <div>
                             <input 
-                                className="mr-2 " type="radio" name="radio" id="radio3" value="todos" 
+                                className="mr-2 " type="radio" name="estadoAlumno" id="radio3" value="todos" 
                                 
-                                onChange={HandleChange}
+                                onChange={handleChange}
                             />
                             <label className="form-check-label" htmlFor="perdieron">
                                 Todos
                             </label>
                         </div>
                     </div>
-
                     <div className="flex justify-center">
                         <button
                             type="submit"

@@ -23,39 +23,35 @@ const Listado = ({alumnos, filtrar, alumnosFiltro}) => {
                             </tr>
                         </thead>
                         <tbody>
-                        
-                        { filtrar 
-                        ?
-                        
-                            alumnosFiltro.length !== 0
+                            { filtrar 
                             ?
-                                (
-                                    alumnosFiltro.map(alumno => (
-                                        <Alumno
-                                            key={alumno.codigo}
-                                            alumno={alumno}
-                                        /> 
-                                    ))
-                                )
+                            
+                                alumnosFiltro.length !== 0
+                                ?
+                                    (
+                                        alumnosFiltro.map(alumno => (
+                                            <Alumno
+                                                key={alumno.codigo}
+                                                alumno={alumno}
+                                            /> 
+                                        ))
+                                    )
+                                :
+                                    null
                             :
-                                null
-                        :
-                                (
-                                    alumnos.map(alumno => (
-                                        <Alumno
-                                            key={alumno.codigo}
-                                            alumno={alumno}
-                                        /> 
-                                    ))
-                                )
-                        }
-                        
+                                    (
+                                        alumnos.map(alumno => (
+                                            <Alumno
+                                                key={alumno.codigo}
+                                                alumno={alumno}
+                                            /> 
+                                        ))
+                                    )
+                            }
                         </tbody>
                     </table>
                 }
             </div>
-            
-      
         </>
      );
 }

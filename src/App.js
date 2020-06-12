@@ -14,13 +14,12 @@ function App() {
 
   const [filtro, guardarFiltro] = useState({
     documento:'',
-    radio:'todos'
+    estadoAlumno:'todos'
   });
 
   useEffect(() => {
     if(creardatos) {
-
-        // agrega el nuevo saldo
+        // agrega el nuevo alumno
         guardarAlumnos([
           ...alumnos,
           informacion

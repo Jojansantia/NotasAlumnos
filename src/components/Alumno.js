@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Alumno = ({alumno}) => {
+    
     return ( 
         <>
             <tr>
@@ -9,8 +10,7 @@ const Alumno = ({alumno}) => {
                 <td className="border text-center">{alumno.estado}</td>
             </tr>
         </>
-
-     );
+    );
 }
  
 export default Alumno;
