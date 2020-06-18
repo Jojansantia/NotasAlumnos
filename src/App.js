@@ -16,6 +16,8 @@ function App() {
     documento:'',
     estadoAlumno:'todos'
   });
+  console.log(filtro);
+  
 
   useEffect(() => {
     if(creardatos) {

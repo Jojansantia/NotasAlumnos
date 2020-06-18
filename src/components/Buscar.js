@@ -33,7 +33,9 @@ const Buscar = ({alumnos, filtro, guardarFiltro, guardarAlumnosFiltro, guardarFi
         }
         guardarAlumnosFiltro(alumnosFiltrados)
         guardarFiltro({
+            ...filtro,
             documento:''
+
         })
     }
 
